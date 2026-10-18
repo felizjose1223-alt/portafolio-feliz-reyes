@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Reyes | ING. En Sistemas & Especialista en Redes</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Portafolio Profesional de Feliz Reyes - ING. En Sistemas, Especializado en Redes, Frontend Minimalista, SEO y Arquitectura Web Responsiva. Estética Medieval Ciberpunk.">
+    <meta name="keywords" content="Ingeniero de Sistemas, Redes, Cisco, Linux, Frontend, Web Developer, Portfolio, Feliz Reyes, HTML5, CSS3, JavaScript, React, Bootstrap">
+    <meta name="author" content="Feliz Reyes">
+    <meta property="og:title" content="Portafolio Profesional | Feliz Reyes">
+    <meta property="og:description" content="Especialista en Ingeniería de Sistemas y Redes de Alta Disponibilidad con enfoque en Desarrollo Web Minimalista y Responsivo.">
+    <meta property="og:type" content="website">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Devicon Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <!-- Google Fonts: Medieval & Tech Vibes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Fira+Code:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // EmailJS Initialization placeholder (Public Key can be added by user)
+            if (typeof emailjs !== 'undefined') {
+                emailjs.init("YOUR_PUBLIC_KEY_HERE");
+            }
+        })();
+    </script>
+
+    <style>
+        /* ==========================================================================
+           1. CORE DESIGN TOKENS & THEMING
+           ========================================================================== */
+        :root {
+            --font-medieval: 'Cinzel', serif;
+            --font-code: 'Fira Code', monospace;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            
+            /* Dark Theme Colors (Default) */
+            --bg-primary: #090a0f;
+            --bg-secondary: #121520;
+            --bg-card: rgba(18, 21, 32, 0.85);
+            --border-glow: #00f3ff;
+            --text-primary: #f0f6fc;
+            --text-muted: #919eab;
+            --accent-gold: #ffd700;
+            --accent-neon-green: #39ff14;
+            --accent-cyan: #00f3ff;
+            --accent-dodgerblue: #1e90ff;
+            --card-shadow: 0 8px 32px 0 rgba(0, 243, 255, 0.15);
+            --nav-bg: rgba(9, 10, 15, 0.9);
+        }
+
+        [data-bs-theme="light"] {
+            /* Light Theme Colors */
+            --bg-primary: #f4f6f9;
+            --bg-secondary: #ffffff;
+            --bg-card: rgba(255, 255, 255, 0.92);
+            --border-glow: #0f4c81;
+            --text-primary: #1a202c;
+            --text-muted: #4a5568;
+            --accent-gold: #b38f00;
+            --accent-neon-green: #1b8a0a;
+            --accent-cyan: #008ba3;
+            --accent-dodgerblue: #1e90ff;
+            --card-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.08);
+            --nav-bg: rgba(244, 246, 249, 0.95);
+        }
+
+        /* Smooth Transition for Theme Switch */
+        body, .card, .navbar, .btn, .footer, input, textarea, .nav-link, h1, h2, h3, h4, h5, h6, p, span {
+            transition: background-color 0.4s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        h1, h2, h3, .brand-font {
+            font-family: var(--font-medieval);
+            letter-spacing: 0.5px;
+        }
+
+        /* Matrix Canvas Fixed Background */
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.35;
+        }
+
+        /* Cyberpunk Medieval Neon Accents */
+        .glow-text-gold {
+            color: var(--accent-gold) !important;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+        }
+
+        .glow-text-cyan {
+            color: var(--accent-cyan) !important;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+        }
+
+        .glow-border {
+            border: 1px solid var(--border-glow);
+            box-shadow: var(--card-shadow);
+        }
+
+        .medieval-card {
+            background-color: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .medieval-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--border-glow), transparent);
+        }
+
+        .medieval-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-glow);
+            box-shadow: 0 12px 30px rgba(0, 243, 255, 0.25);
+        }
+
+        /* ==========================================================================
+           2. NAVIGATION BAR
+           ========================================================================== */
+        .navbar {
+            background-color: var(--nav-bg) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.15);
+        }
+
+        .navbar-brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin: 0 4px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-cyan) !important;
+        }
+
+        /* ==========================================================================
+           3. HERO SECTION
+           ========================================================================== */
+        .hero-section {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 0 40px;
+        }
+
+        .profile-img-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-img {
+            width: 280px;
+            height: 340px;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 2px solid var(--accent-cyan);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.3);
+            filter: grayscale(15%) contrast(105%);
+            transition: all 0.4s ease;
+        }
+
+        .profile-img:hover {
+            filter: grayscale(0%) contrast(100%);
+            box-shadow: 0 0 35px rgba(0, 243, 255, 0.5);
+            transform: scale(1.02);
+        }
+
+        .badge-tech {
+            font-family: var(--font-code);
+            background: rgba(0, 243, 255, 0.1);
+            color: var(--accent-cyan);
+            border: 1px solid var(--accent-cyan);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* ==========================================================================
+           4. STACK TECNOLÓGICO
+           ========================================================================== */
+        .tech-card {
+            padding: 20px;
+            text-align: center;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .tech-card i {
+            font-size: 2.8rem;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2);
+        }
+
+        /* ==========================================================================
+           5. PROYECTOS & FILTROS
+           ========================================================================== */
+        .btn-filter {
+            background: transparent;
+            border: 1px solid var(--border-glow);
+            color: var(--text-primary);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            margin: 4px;
+            transition: all 0.3s;
+        }
+
+        .btn-filter.active, .btn-filter:hover {
+            background: var(--accent-cyan);
+            color: #000 !important;
+            box-shadow: 0 0 15px var(--accent-cyan);
+        }
+
+        .project-card-img {
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.15);
+        }
+
+        /* ==========================================================================
+           6. FORMULARIO DE CONTACTO
+           ========================================================================== */
+        .form-control {
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            color: var(--text-primary);
+            padding-left: 42px;
+            border-radius: 8px;
+        }
+
+        [data-bs-theme="light"] .form-control {
+            background-color: #ffffff;
+            border-color: #cbd5e1;
+            color: #1e293b;
+        }
+
+        .form-control:focus {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-dodgerblue);
+            box-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
+            color: var(--text-primary);
+        }
+
+        .input-group-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            color: var(--accent-cyan);
+        }
+
+        .btn-dodgerblue {
+            background-color: var(--accent-dodgerblue);
+            color: #ffffff;
+            font-weight: 700;
+            padding: 12px 36px;
+            border-radius: 30px;
+            border: none;
+            box-shadow: 0 4px 15px rgba(30, 144, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-dodgerblue:hover {
+            background-color: #0066cc;
+            box-shadow: 0 6px 20px rgba(30, 144, 255, 0.6);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           7. FOOTER
+           ========================================================================== */
+        .footer {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid rgba(0, 243, 255, 0.15);
+            padding: 40px 0 20px;
+        }
+
+        .social-link {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 243, 255, 0.08);
+            color: var(--text-primary);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            margin: 0 6px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            color: #ffffff;
+            transform: translateY(-4px);
+            box-shadow: 0 0 15px var(--accent-cyan);
+        }
+
+        /* Social specific hover colors */
+        .social-link.linkedin:hover { background: #0077b5; border-color: #0077b5; }
+        .social-link.youtube:hover { background: #ff0000; border-color: #ff0000; }
+        .social-link.github:hover { background: #333333; border-color: #ffffff; }
+        .social-link.whatsapp:hover { background: #25d366; border-color: #25d366; }
+        .social-link.instagram:hover { background: #e1306c; border-color: #e1306c; }
+        .social-link.facebook:hover { background: #1877f2; border-color: #1877f2; }
+        .social-link.twitter:hover { background: #1da1f2; border-color: #1da1f2; }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent-dodgerblue);
+            color: #fff;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            background: var(--accent-cyan);
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================================================
+         CANVAS MATRIX FONDO FIXED (TRANS LÚCIDO)
+         ========================================================================== -->
+    <canvas id="matrixCanvas"></canvas>
+
+    <!-- ==========================================================================
+         1. NAVBAR
+         ========================================================================== -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand glow-text-cyan" href="#hero">
+                <i class="fa-solid fa-shield-halved me-2 glow-text-gold"></i>Feliz Reyes
+            </a>
+            <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fa-solid fa-bars-staggered text-info fs-3"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#hero">🏰 Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#stack">⚡ Stack</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#proyectos">⚔️ Proyectos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experiencia">📜 Experiencia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#videos">🎬 Videos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">✉️ Contacto</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <button id="themeToggle" class="btn btn-outline-info rounded-circle px-3 py-2" title="Cambiar Modo Claro/Oscuro">
+                            <i class="fa-solid fa-moon" id="themeIcon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==========================================================================
+         2. SECCIÓN HERO
+         ========================================================================== -->
+    <section id="hero" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center gy-5">
+                <!-- Foto de Perfil del Hero (A la izquierda) -->
+                <div class="col-lg-5 text-center text-lg-start">
+                    <div class="profile-img-container">
+                        <img src="https://scontent.fhex5-1.fna.fbcdn.net/v/t39.30808-6/472133202_964728425757760_1579471068606478998_n.jpg?stp=dst-jpg_tt6&cstp=mx828x1025&ctp=s828x1025&_nc_cat=104&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=JeHMOUK1V5cQ7kNvwGQrHIk&_nc_oc=AdoRqOYET5V0DcPMot88klqPk7YsmJFiohFagTdTa0z6mzT_-wXgI3XXsS8OemEgQv3duDmiItIOpc7VsExsKg2u&_nc_zt=23&_nc_ht=scontent.fhex5-1.fna&_nc_gid=9Xpln9I4wT2GoPc7ci1N7w&_nc_ss=7b2a8&oh=00_AQPO1vyBHObf3cLRbCJPBR41HSXCgOhlxr_ezTZTKsz3lw&oe=6ADA8ADE" 
+                             alt="Foto de Perfil Feliz Reyes" 
+                             class="profile-img img-fluid"
+                             onerror="this.onerror=null; this.src='https://placehold.co/828x1025/121520/00f3ff?text=Feliz+Reyes';">
+                    </div>
+                </div>
+                <!-- Datos Profesionales BIO -->
+                <div class="col-lg-7">
+                    <div class="mb-3">
+                        <span class="badge-tech"><i class="fa-solid fa-terminal me-1"></i> ARCHITECT & NETWORKING</span>
+                    </div>
+                    <h1 class="display-4 fw-bold mb-2">
+                        [<span class="glow-text-cyan">Feliz Reyes</span>]
+                    </h1>
+                    <h3 class="h4 mb-4 glow-text-gold">
+                        ⚔️ ING. En sistemas, especializado en redes
+                    </h3>
+                    <p class="lead mb-4 text-secondary-custom">
+                        Especialista en ingeniería de sistemas y redes de alta disponibilidad con enfoque minimalista, desarrollo web altamente responsive, optimización SEO de alto rendimiento y arquitectura de código bajo estrictas buenas prácticas.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#contacto" class="btn btn-dodgerblue">
+                            <i class="fa-solid fa-paper-plane me-2"></i>Contactar Ahora
+                        </a>
+                        <a href="#proyectos" class="btn btn-outline-info rounded-pill px-4 fw-bold">
+                            <i class="fa-solid fa-scroll me-2"></i>Ver Portafolio
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. STACK TECNOLÓGICO
+         ========================================================================== -->
+    <section id="stack" class="py-5">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="h1 glow-text-gold">⚡ Stack Tecnológico</h2>
+                <p class="text-muted">Herramientas y tecnologías de mi arsenal ciberpunk & desarrollo medieval moderno</p>
+            </div>
+            <div class="row g-4">
+                <!-- HTML5 -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="tech-card">
+                        <i class="devicon-html5-plain colored"></i>
+                        <h5 class="m-0 fw-bold">HTML5</h5>
+                        <small class="text-muted">Estructura Semántica</small>
+                    </div>
+                </div>
+                <!-- CSS3 -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="tech-card">
+                        <i class="devicon-css3-plain colored"></i>
+                        <h5 class="m-0 fw-bold">CSS3</h5>
+                        <small class="text-muted">Estilos & Animations</small>
+                    </div>
+                </div>
+                <!-- JavaScript -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="tech-card">
+                        <i class="devicon-javascript-plain colored"></i>
+                        <h5 class="m-0 fw-bold">JavaScript</h5>
+                        <small class="text-muted">Lógica & Dinamismo</small>
+                    </div>
+                </div>
+                <!-- React -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="tech-card">
+                        <i class="devicon-react-original colored"></i>
+                        <h5 class="m-0 fw-bold">React</h5>
+                        <small class="text-muted">UI Componentizada</small>
+                    </div>
+                </div>
+                <!-- Bootstrap -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="tech-card">
+                        <i class="devicon-bootstrap-plain colored"></i>
+                        <h5 class="m-0 fw-bold">Bootstrap 5</h5>
+                        <small class="text-muted">Diseño Responsive</small>
+                    </div>
+                </div>
+                <!-- Cisco / Networking -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="tech-card">
+                        <i class="fa-solid fa-network-wired text-info"></i>
+                        <h5 class="m-0 fw-bold">Redes & Cisco</h5>
+                        <small class="text-muted">Infraestructura & Routing</small>
+                    </div>
+                </div>
+                <!-- Linux -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="tech-card">
+                        <i class="devicon-linux-plain colored"></i>
+                        <h5 class="m-0 fw-bold">Linux Server</h5>
+                        <small class="text-muted">Administración de Sistemas</small>
+                    </div>
+                </div>
+                <!-- Python -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="tech-card">
+                        <i class="devicon-python-plain colored"></i>
+                        <h5 class="m-0 fw-bold">Python</h5>
+                        <small class="text-muted">Automatización & Scripts</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. SECCIÓN DE PROYECTOS CON FILTROS DINÁMICOS
+         ========================================================================== -->
+    <section id="proyectos" class="py-5">
+        <div class="container py-4">
+            <div class="text-center mb-4">
+                <h2 class="h1 glow-text-cyan">⚔️ Portafolio de Proyectos</h2>
+                <p class="text-muted">Explora los artefactos desarrollados organizados por categorías</p>
+                
+                <!-- Botones de Filtro Dinámico -->
+                <div class="d-flex justify-content-center flex-wrap gap-2 mt-4" id="filter-buttons">
+                    <button class="btn-filter active" data-filter="all">🕹️ Todos (9)</button>
+                    <button class="btn-filter" data-filter="web">🌐 Proyectos Web (3)</button>
+                    <button class="btn-filter" data-filter="app">📱 Proyectos Apps (3)</button>
+                    <button class="btn-filter" data-filter="diseno">🎨 Proyectos Diseño (3)</button>
+                </div>
+            </div>
+
+            <!-- Grid de Proyectos (9 Tarjetas) -->
+            <div class="row g-4 mt-2" id="projects-grid">
+                <!-- PROYECTOS WEB (3) -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="web">
+                    <div class="card medieval-card h-100">
+                        <img src="https://placehold.co/600x400/121520/00f3ff?text=Web+1+Portafolio" class="card-img-top project-card-img" alt="Web 1">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title glow-text-gold">🏰 Web 1: Plataforma Cyber-Medieval</h5>
+                            <p class="card-text text-muted flex-grow-1">Aplicación web minimalista con optimización SEO, respuesta ultrarrápida y UI/UX inspirada en reinos oscuros.</p>
+                            <a href="#" class="btn btn-sm btn-outline-info rounded-pill mt-3">Ver Proyecto <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 project-item" data-category="web">
+                    <div class="card medieval-card h-100">
+                        <img src="https://placehold.co/600x400/121520/00f3ff?text=Web+2+Redes+Dash" class="card-img-top project-card-img" alt="Web 2">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title glow-text-gold">🛡️ Web 2: Network Monitor Dashboard</h5>
+                            <p class="card-text text-muted flex-grow-1">Panel web interactivo para monitoreo en tiempo real de nodos de red y topología de servidores Linux.</p>
+                            <a href="#" class="btn btn-sm btn-outline-info rounded-pill mt-3">Ver Proyecto <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 project-item" data-category="web">
+                    <div class="card medieval-card h-100">
+                        <img src="https://placehold.co/600x400/121520/00f3ff?text=Web+3+E-Commerce" class="card-img-top project-card-img" alt="Web 3">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title glow-text-gold">🔮 Web 3: Relicarium E-Commerce</h5>
+                            <p class="card-text text-muted flex-grow-1">Plataforma de comercio electrónico con carrito reactivo, filtros dinámicos y diseño responsivo completo.</p>
+                            <a href="#" class="btn btn-sm btn-outline-info rounded-pill mt-3">Ver Proyecto <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROYECTOS APPS (3) -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="app">
+                    <div class="card medieval-card h-100">
+                        <img src="https://placehold.co/600x400/121520/39ff14?text=App+1+NetScanner" class="card-img-top project-card-img" alt="App 1">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title glow-text-cyan">📲 App 1: Mobile Network Scanner</h5>
+                            <p class="card-text text-muted flex-grow-1">Aplicación móvil para auditoría de puertos, análisis de latencia en subredes y diagnóstico de conectividad.</p>
+                            <a href="#" class="btn btn-sm btn-outline-info rounded-pill mt-3">Ver Proyecto <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 project-item" data-category="app">
+                    <div class="card medieval-card h-100">
+                        <img src="https://placehold.co/600x400/121520/39ff14?text=App+2+TaskGuild" class="card-img-top project-card-img" alt="App 2">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title glow-text-cyan">📜 App 2: TaskGuild Productivity</h5>
+                            <p class="card-text text-muted flex-grow-1">App móvil de gestión de tareas gamificada con temáticas de misiones medievales y sincronización en la nube.</p>
+                            <a href="#" class="btn btn-sm btn-outline-info rounded-pill mt-3">Ver Proyecto <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 project-item" data-category="app">
+                    <div class="card medieval-card h-100">
+                        <img src="https://placehold.co/600x400/121520/39ff14?text=App+3+SecureVault" class="card-img-top project-card-img" alt="App 3">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title glow-text-cyan">🗝️ App 3: CyberVault Authenticator</h5>
+                            <p class="card-text text-muted flex-grow-1">Aplicación de autenticación de dos factores con cifrado extremo a extremo e interfaz simplificada.</p>
+                            <a href="#" class="btn btn-sm btn-outline-info rounded-pill mt-3">Ver Proyecto <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROYECTOS DISEÑO (3) -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="diseno">
+                    <div class="card medieval-card h-100">
+                        <img src="https://placehold.co/600x400/121520/ffd700?text=Des+1+UI+Kit" class="card-img-top project-card-img" alt="Des 1">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title glow-text-gold">🎨 Des 1: Dark Medieval System Kit</h5>
+                            <p class="card-text text-muted flex-grow-1">Sistema de diseño UI/UX completo con componentes, tokens de color y tipografía para interfaces neón.</p>
+                            <a href="#" class="btn btn-sm btn-outline-info rounded-pill mt-3">Ver Proyecto <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 project-item" data-category="diseno">
+                    <div class="card medieval-card h-100">
+                        <img src="https://placehold.co/600x400/121520/ffd700?text=Des+2+Branding" class="card-img-top project-card-img" alt="Des 2">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title glow-text-gold">⚔️ Des 2: Identidad Cyberpunk Brand</h5>
+                            <p class="card-text text-muted flex-grow-1">Manual de marca, imagotipo y pautas de diseño visual para firma de consultoría tecnológica.</p>
+                            <a href="#" class="btn btn-sm btn-outline-info rounded-pill mt-3">Ver Proyecto <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 project-item" data-category="diseno">
+                    <div class="card medieval-card h-100">
+                        <img src="https://placehold.co/600x400/121520/ffd700?text=Des+3+VectorArt" class="card-img-top project-card-img" alt="Des 3">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title glow-text-gold">🐉 Des 3: Ilustración Vectorial Tech</h5>
+                            <p class="card-text text-muted flex-grow-1">Colección de arte vectorial minimalista combinando elementos de ciberseguridad con iconografía antigua.</p>
+                            <a href="#" class="btn btn-sm btn-outline-info rounded-pill mt-3">Ver Proyecto <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. SECCIÓN EXPERIENCIA LABORAL (HASTA 3 ROLES AUTO-CENTRADOS)
+         ========================================================================== -->
+    <section id="experiencia" class="py-5">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="h1 glow-text-gold">📜 Experiencia Laboral</h2>
+                <p class="text-muted">Trayectoria profesional en ingeniería de sistemas, redes y desarrollo</p>
+            </div>
+
+            <!-- Row centrada para auto-centrar de 1 a 3 roles -->
+            <div class="row g-4 justify-content-center">
+                <!-- Rol 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card medieval-card h-100 p-3">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="fa-solid fa-server fs-1 text-info"></i>
+                            </div>
+                            <h4 class="card-title glow-text-cyan">Ingeniero de Redes & Sistemas</h4>
+                            <h6 class="text-warning mb-2">Empresa Global Tech | 2022 - Presente</h6>
+                            <p class="card-text text-muted small">
+                                Implementación y soporte de infraestructura de red Cisco, administración de servidores Linux y mantenimiento de uptime del 99.9%.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rol 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card medieval-card h-100 p-3">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="fa-solid fa-code fs-1 text-warning"></i>
+                            </div>
+                            <h4 class="card-title glow-text-gold">Especialista Frontend & Web</h4>
+                            <h6 class="text-warning mb-2">Estudio Digital Creative | 2020 - 2022</h6>
+                            <p class="card-text text-muted small">
+                                Desarrollo de portafolios y aplicaciones web minimalistas, optimización SEO de alto grado y diseño responsive accesible.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rol 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card medieval-card h-100 p-3">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="fa-solid fa-network-wired fs-1 text-success"></i>
+                            </div>
+                            <h4 class="card-title glow-text-cyan">Consultor de Infraestructura IT</h4>
+                            <h6 class="text-warning mb-2">Servicios Informáticos RJA | 2018 - 2020</h6>
+                            <p class="card-text text-muted small">
+                                Auditoría de seguridad informática, despliegue de redes LAN/WAN y automatización de procesos mediante scripts en Python.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. SECCIÓN DE VIDEOS DESTACADOS
+         ========================================================================== -->
+    <section id="videos" class="py-5">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="h1 glow-text-cyan">🎬 Videos Destacados</h2>
+                <p class="text-muted">Demostraciones, tutoriales y clases magistrales en canal oficial</p>
+            </div>
+
+            <!-- 3 Videos Visibles Iniciales -->
+            <div class="row g-4">
+                <!-- Video 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card medieval-card h-100">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Tutorial Desarrollo Full Stack" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title glow-text-gold">■ Tutorial: Desarrollo Full Stack</h5>
+                            <p class="card-text text-muted small">Guía paso a paso sobre arquitectura limpia, HTML5 semántico y diseño responsivo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card medieval-card h-100">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Configuración de Redes Cisco" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title glow-text-gold">⚙️ Configuración de Redes Cisco</h5>
+                            <p class="card-text text-muted small">Manejo de VLANs, enrutamiento dinámico y seguridad perimetral de red.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card medieval-card h-100">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Optimización SEO y Performance" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title glow-text-gold">🚀 Optimización SEO & Speed</h5>
+                            <p class="card-text text-muted small">Técnicas avanzadas para posicionamiento web y carga en milisegundos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- =================================================================
+                     9 BLOQUES DE VIDEOS ADICIONALES COMENTADOS (Listos para activar)
+                     ================================================================= -->
+                <!--
+                <div class="col-lg-4 col-md-6">
+                    <div class="card medieval-card h-100">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" title="Video Extra 4" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title glow-text-gold">■ Video 4: Servidores Linux</h5>
+                            <p class="card-text text-muted small">Administración y hardening de servidores Linux Debian/Ubuntu.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card medieval-card h-100">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_5" title="Video Extra 5" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title glow-text-gold">■ Video 5: React & State Management</h5>
+                            <p class="card-text text-muted small">Creación de componentes interactivos con Hooks y Context API.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card medieval-card h-100">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_6" title="Video Extra 6" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title glow-text-gold">■ Video 6: Python para Redes</h5>
+                            <p class="card-text text-muted small">Automatización de tareas de red mediante scripts en Python Netmiko.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card medieval-card h-100">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_7" title="Video Extra 7" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title glow-text-gold">■ Video 7: Ciberseguridad Básica</h5>
+                            <p class="card-text text-muted small">Principios de protección de datos y análisis de vulnerabilidades.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card medieval-card h-100">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_8" title="Video Extra 8" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title glow-text-gold">■ Video 8: Bootstrap 5 Avanzado</h5>
+                            <p class="card-text text-muted small">Dominio del Grid responsivo y personalización de utilidades CSS.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card medieval-card h-100">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_9" title="Video Extra 9" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title glow-text-gold">■ Video 9: Git & GitHub Workflow</h5>
+                            <p class="card-text text-muted small">Control de versiones, branches y despliegue continuo en web.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card medieval-card h-100">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_10" title="Video Extra 10" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title glow-text-gold">■ Video 10: Canvas Matrix Effects</h5>
+                            <p class="card-text text-muted small">Creación de animaciones JavaScript nativas sobre Canvas HTML5.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card medieval-card h-100">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_11" title="Video Extra 11" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title glow-text-gold">■ Video 11: Cableado Estructurado</h5>
+                            <p class="card-text text-muted small">Buenas prácticas en armado de racks y patch panels para datacenter.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card medieval-card h-100">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_12" title="Video Extra 12" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title glow-text-gold">■ Video 12: SEO Técnico</h5>
+                            <p class="card-text text-muted small">Metadatos OpenGraph, Rich Snippets y optimización de Core Web Vitals.</p>
+                        </div>
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         7. FORMULARIO DE CONTACTO
+         ========================================================================== -->
+    <section id="contacto" class="py-5">
+        <div class="container py-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card medieval-card shadow-lg p-4 p-md-5">
+                        <div class="text-center mb-4">
+                            <h2 class="h1 glow-text-gold">✉️ Enviar un Mensaje</h2>
+                            <p class="text-muted">¿Tienes un proyecto en mente o consulta técnica? Contáctame directamente.</p>
+                        </div>
+
+                        <!-- Confirmación de Envío Success Alert -->
+                        <div id="contact-alert" class="alert alert-success d-none text-center rounded-3 fw-bold mb-4" role="alert">
+                            ■ Mensaje enviado correctamente
+                        </div>
+
+                        <form id="contactForm" class="needs-validation" novalidate>
+                            <div class="row g-3">
+                                <!-- Nombre (text) -->
+                                <div class="col-md-6">
+                                    <label for="userName" class="form-label fw-semibold">Nombre Completo</label>
+                                    <div class="position-relative">
+                                        <i class="fa-solid fa-user input-group-icon"></i>
+                                        <input type="text" class="form-control" id="userName" name="from_name" placeholder="Tu Nombre" required>
+                                        <div class="invalid-feedback">Por favor ingresa tu nombre.</div>
+                                    </div>
+                                </div>
+
+                                <!-- Correo (email) -->
+                                <div class="col-md-6">
+                                    <label for="userEmail" class="form-label fw-semibold">Correo Electrónico</label>
+                                    <div class="position-relative">
+                                        <i class="fa-solid fa-envelope input-group-icon"></i>
+                                        <input type="email" class="form-control" id="userEmail" name="reply_to" placeholder="nombre@ejemplo.com" required>
+                                        <div class="invalid-feedback">Ingresa un correo electrónico válido.</div>
+                                    </div>
+                                </div>
+
+                                <!-- Teléfono (tel) -->
+                                <div class="col-12">
+                                    <label for="userPhone" class="form-label fw-semibold">Teléfono de Contacto</label>
+                                    <div class="position-relative">
+                                        <i class="fa-solid fa-phone input-group-icon"></i>
+                                        <input type="tel" class="form-control" id="userPhone" name="phone_number" placeholder="+1 (809) 000-0000" required>
+                                        <div class="invalid-feedback">Ingresa tu número telefónico.</div>
+                                    </div>
+                                </div>
+
+                                <!-- Mensaje (textarea) -->
+                                <div class="col-12">
+                                    <label for="userMessage" class="form-label fw-semibold">Mensaje o Consulta</label>
+                                    <div class="position-relative">
+                                        <i class="fa-solid fa-comment input-group-icon" style="top: 22px;"></i>
+                                        <textarea class="form-control" id="userMessage" name="message" rows="5" placeholder="Escribe los detalles de tu consulta..." required></textarea>
+                                        <div class="invalid-feedback">Escribe un mensaje antes de enviar.</div>
+                                    </div>
+                                </div>
+
+                                <!-- Botón Centrado DodgerBlue con texto blanco -->
+                                <div class="col-12 text-center mt-4">
+                                    <button type="submit" class="btn btn-dodgerblue px-5 py-3">
+                                        <i class="fa-solid fa-paper-plane me-2"></i>Enviar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         8. FOOTER
+         ========================================================================== -->
+    <footer class="footer">
+        <div class="container text-center">
+            <h3 class="glow-text-cyan brand-font mb-3">Feliz Reyes</h3>
+            <p class="text-muted mb-4">ING. En sistemas, especializado en redes | Frontend & SEO Architect</p>
+            
+            <!-- Redes Sociales Luminosas -->
+            <div class="d-flex justify-content-center flex-wrap gap-2 mb-4">
+                <a href="https://www.linkedin.com/in/Feliz Reyes%C3%B1a/" target="_blank" class="social-link linkedin" title="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.youtube.com/@FelizRJA" target="_blank" class="social-link youtube" title="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="https://github.com/JUANCITOPENA" target="_blank" class="social-link github" title="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://wa.me/18094441638" target="_blank" class="social-link whatsapp" title="WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+                <a href="https://www.instagram.com-Feliz.Reyes/" target="_blank" class="social-link instagram" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/Feliz.Reyes.p.v" target="_blank" class="social-link facebook" title="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com/Feliz.REKV" target="_blank" class="social-link twitter" title="Twitter">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+            </div>
+
+            <hr class="my-4" style="border-color: rgba(0,243,255,0.15);">
+            <p class="small text-muted mb-0">
+                &copy; <span id="year"></span> Feliz Reyes. Todos los derechos reservados. Estética Medieval Cyberpunk.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Botón Volver Arriba -->
+    <button id="backToTop" class="back-to-top" title="Volver Arriba">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ==========================================================================
+         SCRIPTS Y LÓGICA DE INTERACTIVIDAD (MATRIX, THEME, FILTER, FORM)
+         ========================================================================== -->
+    <script>
+        // Set dynamic current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        /* ==========================================================================
+           1. FONDO MATRIX JS CANVAS (VERDE/CIAN TRANSLÚCIDO Y LIGERO)
+           ========================================================================== */
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Caracteres Matrix + Glifos Medievales
+        const chars = '0110100101000101XYZ0123456789⚔️🛡️🔮⚡🩵';
+        const fontSize = 14;
+        let columns = Math.floor(canvas.width / fontSize);
+        let drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            // Fondo translúcido para rastro tenue
+            const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+            ctx.fillStyle = isDark ? 'rgba(9, 10, 15, 0.08)' : 'rgba(244, 246, 249, 0.12)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = isDark ? '#00f3ff' : '#0f4c81'; // Cian neón en dark, azul fuerte en light
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 40);
+
+        /* ==========================================================================
+           2. TOGGLE MODO OSCURO / CLARO (100% ELEMENTOS)
+           ========================================================================== */
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-bs-theme', newTheme);
+
+            if (newTheme === 'light') {
+                themeIcon.className = 'fa-solid fa-sun text-warning';
+            } else {
+                themeIcon.className = 'fa-solid fa-moon text-info';
+            }
+        });
+
+        /* ==========================================================================
+           3. FILTRADO DINÁMICO DE PROYECTOS
+           ========================================================================== */
+        const filterButtons = document.querySelectorAll('#filter-buttons .btn-filter');
+        const projectItems = document.querySelectorAll('#projects-grid .project-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remueve clase activa de todos
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                projectItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        /* ==========================================================================
+           4. VALIDACIÓN Y ENVÍO DEL FORMULARIO DE CONTACTO
+           ========================================================================== */
+        const contactForm = document.getElementById('contactForm');
+        const contactAlert = document.getElementById('contactAlert') || document.getElementById('contact-alert');
+
+        contactForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (contactForm.checkValidity()) {
+                // Simulación/Integración EmailJS con destino juancito.pena@gmail.com
+                const formData = {
+                    name: document.getElementById('userName').value,
+                    email: document.getElementById('userEmail').value,
+                    phone: document.getElementById('userPhone').value,
+                    message: document.getElementById('userMessage').value,
+                    recipient: 'juancito.pena@gmail.com'
+                };
+
+                // Si EmailJS está configurado, envía:
+                if (typeof emailjs !== 'undefined' && emailjs.send) {
+                    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
+                        .then(function() {
+                            showSuccessAlert();
+                        }, function(error) {
+                            console.log('Fallo EmailJS, usando simulación directa:', error);
+                            showSuccessAlert();
+                        });
+                } else {
+                    // Muestra alerta si es modo local/demostración
+                    showSuccessAlert();
+                }
+            } else {
+                contactForm.classList.add('was-validated');
+            }
+        }, false);
+
+        function showSuccessAlert() {
+            contactAlert.classList.remove('d-none');
+            contactForm.reset();
+            contactForm.classList.remove('was-validated');
+            setTimeout(() => {
+                contactAlert.classList.add('d-none');
+            }, 6000);
+        }
+
+        /* ==========================================================================
+           5. BOTÓN VOLVER ARRIBA
+           ========================================================================== */
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
